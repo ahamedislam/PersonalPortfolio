@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { slideUp } from "@/lib/animations";
-import { Terminal } from "@/components/ui/terminal";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -58,37 +57,6 @@ export function ContactSection() {
     }
   };
 
-  const terminalCommands = [
-    {
-      command: "cat contact_info.json",
-      output: [
-        "{",
-        "  \"name\": \"Md. Tareq Ahamed Jony\",",
-        "  \"email\": \"hello@0xt4req.com\",",
-        "  \"phone\": \"+8801521784179\",",
-        "  \"location\": \"Dinajpur, Bangladesh\",",
-        "  \"website\": \"www.0xt4req.com\",",
-        "  \"availability\": \"Open to opportunities\"",
-        "}"
-      ]
-    },
-    {
-      command: "cat social_links.json",
-      output: [
-        "{",
-        "  \"github\": \"github.com/0xt4req\",",
-        "  \"linkedin\": \"linkedin.com/in/0xt4req\",",
-        "  \"twitter\": \"twitter.com/0xt4req\",",
-        "  \"hackerone\": \"hackerone.com/0xt4req\"",
-        "}"
-      ]
-    },
-    {
-      command: "echo \"Thanks for visiting my portfolio!\"",
-      output: "Thanks for visiting my portfolio!"
-    }
-  ];
-
   return (
     <section id="contact" className="py-16 bg-background relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.1),transparent_70%)]"></div>
@@ -103,11 +71,73 @@ export function ContactSection() {
             viewport={{ once: true }}
             custom={0.2}
           >
-            <Terminal
-              title="contact.sh"
-              commands={terminalCommands}
-              className="h-full"
-            />
+            <div className="bg-surface border border-gray-700 rounded-xl p-6 shadow-lg h-full">
+              <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+              
+              <div className="space-y-6">
+                <div className="bg-background/50 rounded-lg p-4 flex items-start gap-4">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i className="fa-solid fa-user text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-200">Name</h4>
+                    <p className="text-gray-400">Md. Tareq Ahamed Jony</p>
+                  </div>
+                </div>
+                
+                <div className="bg-background/50 rounded-lg p-4 flex items-start gap-4">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i className="fa-solid fa-envelope text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-200">Email</h4>
+                    <p className="text-gray-400">hello@0xt4req.com</p>
+                  </div>
+                </div>
+                
+                <div className="bg-background/50 rounded-lg p-4 flex items-start gap-4">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i className="fa-solid fa-phone text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-200">Phone</h4>
+                    <p className="text-gray-400">+8801521784179</p>
+                  </div>
+                </div>
+                
+                <div className="bg-background/50 rounded-lg p-4 flex items-start gap-4">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i className="fa-solid fa-location-dot text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-200">Location</h4>
+                    <p className="text-gray-400">Dinajpur, Bangladesh</p>
+                  </div>
+                </div>
+                
+                <div className="mt-6">
+                  <h4 className="font-medium text-gray-200 mb-3">Social Media</h4>
+                  <div className="flex gap-3">
+                    <a href="https://github.com/0xt4req" target="_blank" rel="noopener noreferrer" 
+                      className="bg-background hover:bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                      <i className="fa-brands fa-github text-gray-300"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/0xt4req" target="_blank" rel="noopener noreferrer" 
+                      className="bg-background hover:bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                      <i className="fa-brands fa-linkedin text-gray-300"></i>
+                    </a>
+                    <a href="https://twitter.com/0xt4req" target="_blank" rel="noopener noreferrer" 
+                      className="bg-background hover:bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                      <i className="fa-brands fa-twitter text-gray-300"></i>
+                    </a>
+                    <a href="https://hackerone.com/0xt4req" target="_blank" rel="noopener noreferrer" 
+                      className="bg-background hover:bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                      <i className="fa-solid fa-bug text-gray-300"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
           
           <motion.div
