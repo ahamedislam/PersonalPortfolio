@@ -8,6 +8,7 @@ import { ExperienceSection } from "@/components/sections/experience";
 import { ProjectsSection } from "@/components/sections/projects";
 import { CVEsSection } from "@/components/sections/cves";
 import { CertificationsSection } from "@/components/sections/certifications";
+import { GallerySection } from "@/components/sections/gallery";
 import { ContactSection } from "@/components/sections/contact";
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
       <CertificationsSection />
       <ProjectsSection />
       <CVEsSection />
+      <GallerySection />
       <ContactSection />
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-import { SkillItem, ProjectItem, ExperienceItem, CVEItem, SocialLink, CertificationItem } from "@shared/types";
+import { SkillItem, ProjectItem, ExperienceItem, CVEItem, SocialLink, CertificationItem, GalleryItem } from "@shared/types";
 
 export const securitySkills: SkillItem[] = [
   { name: "Network Reconnaissance", level: 90 },
@@ -180,6 +180,51 @@ export const cveItems: CVEItem[] = [
     product: "Apache Airflow",
     detailsLink: "https://nvd.nist.gov/vuln/detail/CVE-2023-49920",
     writeupLink: "#"
+  }
+];
+
+export const workshopGallery: GalleryItem[] = [
+  {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1573511860302-28c510d27433?auto=format&fit=crop&q=80&w=600&h=400",
+    title: "Web Application Security Workshop",
+    date: "March 2023",
+    location: "Dhaka Tech Hub"
+  },
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600&h=400",
+    title: "Penetration Testing Masterclass",
+    date: "June 2023",
+    location: "Virtual Event"
+  },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600&h=400",
+    title: "Ethical Hacking Workshop",
+    date: "September 2023",
+    location: "Dinajpur Tech Institute"
+  },
+  {
+    id: 4,
+    image: "https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?auto=format&fit=crop&q=80&w=600&h=400",
+    title: "Mobile App Security Workshop",
+    date: "November 2023",
+    location: "Coding Bootcamp BD"
+  },
+  {
+    id: 5,
+    image: "https://images.unsplash.com/photo-1581092335397-9fa73e389016?auto=format&fit=crop&q=80&w=600&h=400",
+    title: "Secure Coding Practices",
+    date: "January 2024",
+    location: "University of Dhaka"
+  },
+  {
+    id: 6,
+    image: "https://images.unsplash.com/photo-1540884081614-5c3afc1787c4?auto=format&fit=crop&q=80&w=600&h=400",
+    title: "API Security Workshop",
+    date: "April 2024",
+    location: "Bangladesh IT Conference"
   }
 ];
 

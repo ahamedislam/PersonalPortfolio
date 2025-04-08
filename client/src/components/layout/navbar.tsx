@@ -53,6 +53,7 @@ export function Navbar() {
     { name: "Certifications", id: "certifications" },
     { name: "Projects", id: "projects" },
     { name: "CVEs", id: "cves" },
+    { name: "Gallery", id: "gallery" },
     { name: "Contact", id: "contact" },
   ];
 

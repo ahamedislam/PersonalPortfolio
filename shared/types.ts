@@ -59,3 +59,11 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
+
+export interface GalleryItem {
+  id: number;
+  image: string;
+  title: string;
+  date: string;
+  location?: string;
+}
