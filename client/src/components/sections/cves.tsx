@@ -10,7 +10,7 @@ export function CVEsSection() {
       <div className="container mx-auto px-4">
         <SectionHeading title="CVE" highlight="Publications" />
         
-        <div className="max-w-4xl mx-auto grid gap-6">
+        <div className="max-w-6xl mx-auto grid gap-6">
           {cveItems.map((cve: CVEItem, index: number) => (
             <motion.div 
               key={cve.id}

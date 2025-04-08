@@ -31,9 +31,9 @@ export function AboutSection() {
       <WaveBackground position="top" opacity={0.05} />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          <SectionHeading title="About" highlight="Me" />
-          
+        <SectionHeading title="About" highlight="Me" />
+        
+        <div className="max-w-6xl mx-auto">
           <div className="bg-card/40 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-xl mb-12">
             <motion.div
               variants={fadeIn}

@@ -10,7 +10,7 @@ export function ExperienceSection() {
       <div className="container mx-auto px-4">
         <SectionHeading title="Work" highlight="Experience" />
         
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="space-y-8">
             {experienceItems.map((item: ExperienceItem, index: number) => (
               <motion.div 

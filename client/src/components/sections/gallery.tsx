@@ -15,7 +15,7 @@ export function GallerySection() {
       <WaveBackground position="top" opacity={0.03} color="#1e40af" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <SectionHeading title="Workshop" highlight="Gallery" />
           <p className="text-gray-300 text-center max-w-2xl mx-auto mb-12">
             I conduct cybersecurity workshops and training sessions to share knowledge 

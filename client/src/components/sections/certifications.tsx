@@ -10,7 +10,7 @@ export function CertificationsSection() {
       <div className="container mx-auto px-4">
         <SectionHeading title="Professional" highlight="Certifications" />
         
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           {certifications.map((cert: CertificationItem, index: number) => (
             <motion.div 
               key={cert.id}
