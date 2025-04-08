@@ -1,28 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { Terminal } from "@/components/ui/terminal";
 import { motion } from "framer-motion";
-import { fadeIn, slideUp } from "@/lib/animations";
+import { fadeIn } from "@/lib/animations";
+import { WaveBackground } from "@/components/ui/wave-background";
 
 export function HeroSection() {
-  const [typingComplete, setTypingComplete] = useState(false);
-  const terminalCommands = [
-    {
-      command: "whoami",
-      output: "Security Researcher | Bug Bounty Hunter | CTF Enthusiast"
-    }
-  ];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTypingComplete(true);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section id="home" className="min-h-screen pt-24 pb-16 flex flex-col justify-center relative overflow-hidden">
+      {/* Background gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.1),transparent_70%)]"></div>
+      
+      {/* Wave animation background */}
+      <WaveBackground position="bottom" opacity={0.1} />
+      
+      {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="lg:w-1/2">
@@ -53,12 +42,19 @@ export function HeroSection() {
               animate="visible"
               custom={0.5}
             >
-              <Terminal
-                commands={terminalCommands}
-                typingSpeed={50}
-                initialDelay={800}
-                className="shadow-lg"
-              />
+              <div className="bg-surface border border-gray-700 rounded-xl p-5 shadow-lg">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center">
+                    <i className="fa-solid fa-user-shield text-primary"></i>
+                  </div>
+                  <h3 className="text-lg font-medium">Security Researcher | Bug Bounty Hunter | CTF Enthusiast</h3>
+                </div>
+                <p className="text-gray-400 pl-2 border-l-2 border-primary/50">
+                  I'm a dedicated cybersecurity professional specializing in penetration testing,
+                  vulnerability assessment, and security research. With a passion for identifying and 
+                  solving complex security challenges.
+                </p>
+              </div>
             </motion.div>
             
             <motion.div 

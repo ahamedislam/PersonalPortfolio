@@ -17,8 +17,8 @@ export function Navbar() {
       let current = "";
       
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).clientHeight;
         
         if (window.scrollY >= sectionTop - 200) {
           current = section.getAttribute("id") || "";
@@ -39,7 +39,7 @@ export function Navbar() {
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: (element as HTMLElement).offsetTop - 80,
         behavior: "smooth",
       });
     }

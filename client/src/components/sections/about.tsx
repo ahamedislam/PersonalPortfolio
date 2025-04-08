@@ -1,52 +1,36 @@
 import { motion } from "framer-motion";
-import { Terminal } from "@/components/ui/terminal";
 import { slideUp } from "@/lib/animations";
 import { SectionHeading } from "../ui/section-heading";
+import { WaveBackground } from "@/components/ui/wave-background";
 
 export function AboutSection() {
-  const terminalCommands = [
-    {
-      command: "cat certifications.txt",
-      output: [
-        "- Certified AppSec Practitioner (CAP)",
-        "- Certified AppSec Pentester (CAPen)",
-        "- Certified API Security Analyst (CASA)",
-        "- Certified Cyber Security Analyst (C3SA)",
-        "- Jr Penetration Tester"
-      ]
-    },
-    {
-      command: "cat languages.txt",
-      output: [
-        "- Bangla (Native)",
-        "- English (Fluent)",
-        "- Hindi (Intermediate)"
-      ]
-    },
-    {
-      command: "cat soft_skills.txt",
-      output: [
-        "- Project Management",
-        "- Leadership",
-        "- Communication",
-        "- Team Collaboration",
-        "- Time Management"
-      ]
-    },
-    {
-      command: "ls -la socials/",
-      output: [
-        "- GitHub",
-        "- LinkedIn",
-        "- Twitter",
-        "- HackerOne"
-      ]
-    }
+  const languages = [
+    "Bangla (Native)",
+    "English (Fluent)",
+    "Hindi (Intermediate)"
+  ];
+  
+  const softSkills = [
+    "Project Management",
+    "Leadership",
+    "Communication",
+    "Team Collaboration",
+    "Time Management"
+  ];
+  
+  const socials = [
+    "GitHub",
+    "LinkedIn",
+    "Twitter",
+    "HackerOne"
   ];
 
   return (
-    <section id="about" className="py-16 bg-surface">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-16 bg-surface relative overflow-hidden">
+      {/* Wave animation background */}
+      <WaveBackground position="top" opacity={0.05} />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <SectionHeading title="About" highlight="Me" />
           
@@ -105,12 +89,55 @@ export function AboutSection() {
               whileInView="visible"
               viewport={{ once: true }}
               custom={0.4}
+              className="space-y-4"
             >
-              <Terminal
-                title="profile.sh"
-                commands={terminalCommands}
-                className="shadow-lg"
-              />
+              {/* Profile cards to replace terminal */}
+              <div className="bg-card rounded-lg border border-border p-5 shadow-md">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center">
+                    <i className="fa-solid fa-language text-primary"></i>
+                  </div>
+                  <h3 className="text-lg font-medium">Languages</h3>
+                </div>
+                
+                <ul className="pl-2 border-l-2 border-primary/30 space-y-1">
+                  {languages.map((lang, index) => (
+                    <li key={index} className="text-gray-300">{lang}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="bg-card rounded-lg border border-border p-5 shadow-md">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center">
+                    <i className="fa-solid fa-brain text-primary"></i>
+                  </div>
+                  <h3 className="text-lg font-medium">Soft Skills</h3>
+                </div>
+                
+                <ul className="grid grid-cols-2 gap-y-1 pl-2 border-l-2 border-primary/30">
+                  {softSkills.map((skill, index) => (
+                    <li key={index} className="text-gray-300">{skill}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="bg-card rounded-lg border border-border p-5 shadow-md">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center">
+                    <i className="fa-solid fa-share-nodes text-primary"></i>
+                  </div>
+                  <h3 className="text-lg font-medium">Socials</h3>
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  {socials.map((social, index) => (
+                    <span key={index} className="bg-primary/10 text-primary px-3 py-1 rounded-md text-sm">
+                      {social}
+                    </span>
+                  ))}
+                </div>
+              </div>
               
               <div className="mt-6 flex justify-center">
                 <a 
