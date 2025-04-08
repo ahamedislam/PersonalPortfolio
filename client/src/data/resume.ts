@@ -1,4 +1,4 @@
-import { SkillItem, ProjectItem, ExperienceItem, CVEItem, SocialLink } from "@shared/types";
+import { SkillItem, ProjectItem, ExperienceItem, CVEItem, SocialLink, CertificationItem } from "@shared/types";
 
 export const securitySkills: SkillItem[] = [
   { name: "Network Reconnaissance", level: 90 },
@@ -23,6 +23,41 @@ export const tools: string[] = [
 
 export const operatingSystems: string[] = [
   "Kali Linux", "Ubuntu", "Parrot OS", "Windows"
+];
+
+export const certifications: CertificationItem[] = [
+  {
+    id: 1,
+    title: "Certified Ethical Hacker (CEH)",
+    issuer: "EC-Council",
+    date: "Oct 2023",
+    credentialId: "ECC12345678",
+    credentialURL: "https://aspen.eccouncil.org/verify"
+  },
+  {
+    id: 2,
+    title: "CompTIA Security+",
+    issuer: "CompTIA",
+    date: "Aug 2023",
+    credentialId: "COMP9876543",
+    credentialURL: "https://www.credly.com/badges/example"
+  },
+  {
+    id: 3,
+    title: "Cyber Security & Ethical Hacking",
+    issuer: "TechnoHacks EduTech",
+    date: "Oct 2023",
+    credentialId: "TH-CERT-1234",
+    credentialURL: "https://technohacks.co.in/certificate-verification"
+  },
+  {
+    id: 4,
+    title: "Advanced Web Application Penetration Testing",
+    issuer: "Offensive Security",
+    date: "Dec 2023",
+    credentialId: "OS-WEB-1234",
+    credentialURL: "https://www.offensive-security.com/verify"
+  }
 ];
 
 export const experienceItems: ExperienceItem[] = [

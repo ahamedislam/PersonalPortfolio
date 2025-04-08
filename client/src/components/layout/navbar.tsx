@@ -50,6 +50,7 @@ export function Navbar() {
     { name: "About", id: "about" },
     { name: "Skills", id: "skills" },
     { name: "Experience", id: "experience" },
+    { name: "Certifications", id: "certifications" },
     { name: "Projects", id: "projects" },
     { name: "CVEs", id: "cves" },
     { name: "Contact", id: "contact" },

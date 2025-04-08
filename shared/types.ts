@@ -43,6 +43,16 @@ export interface ExperienceItem {
   };
 }
 
+export interface CertificationItem {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  credentialId?: string;
+  credentialURL?: string;
+  image?: string;
+}
+
 export interface SocialLink {
   id: string;
   name: string;
