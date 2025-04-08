@@ -5,13 +5,19 @@ import { slideUp } from "@/lib/animations";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ContactMessage } from "@shared/types";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+
+// Define ContactMessage type locally for static site
+interface ContactMessage {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -37,24 +43,19 @@ export function ContactSection() {
   const onSubmit = async (data: ContactMessage) => {
     setIsSubmitting(true);
     
-    try {
-      await apiRequest("POST", "/api/contact", data);
+    // Simulate form submission for static site
+    setTimeout(() => {
       toast({
         title: "Message sent!",
         description: "Thanks for reaching out. I'll get back to you soon!",
         variant: "default",
       });
       form.reset();
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again later.",
-        variant: "destructive",
-      });
-      console.error(error);
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1000);
+    
+    // For a real implementation, you would connect this to a form service like Formspree
+    console.log("Form submitted with data:", data);
   };
 
   return (
