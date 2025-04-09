@@ -98,9 +98,18 @@ export function SkillsSection() {
             </div>
             <h3 className="text-xl font-bold mb-4">Tools & Technologies</h3>
             
-            <div className="space-y-5">
+            <div className="space-y-6">
               <ToolsSlider tools={tools} title="Security Tools" icons={toolIcons} />
+              <div className="h-4"></div> {/* Spacer */}
               <ToolsSlider tools={operatingSystems} title="Operating Systems" icons={osIcons} />
+            </div>
+            
+            <div className="mt-4 pt-4 border-t border-gray-700 flex items-center justify-center">
+              <div className="flex gap-1 text-xs text-gray-400">
+                <span>•</span>
+                <span>Hover over tools to see effects</span>
+                <span>•</span>
+              </div>
             </div>
           </motion.div>
         </div>

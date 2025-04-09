@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
 
@@ -17,7 +17,7 @@ function ToolIcon({ name, icon }: ToolIconProps) {
     .toUpperCase();
 
   return (
-    <div className="flex flex-col items-center gap-2 py-2 px-1">
+    <div className="flex flex-col items-center gap-2 px-1 py-2 min-w-[80px]">
       <div className="w-12 h-12 bg-background/50 rounded-lg flex items-center justify-center border border-primary/20 shadow-md relative overflow-hidden group transition-all duration-300 hover:bg-background">
         {icon ? (
           <i className={`${icon} text-primary text-xl transition-all duration-300 group-hover:scale-110`}></i>
@@ -39,27 +39,26 @@ interface ToolsSliderProps {
 }
 
 export function ToolsSlider({ tools, title, icons = {} }: ToolsSliderProps) {
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  // Auto scroll animation
   useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-    
     let animationId: number;
-    let startTime: number;
-    const duration = 20000; // ms for a complete cycle
+    const duration = 8000; // Time in ms for a complete cycle
+    let startTime: number | null = null;
     
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
+    const animate = (time: number) => {
+      if (!startTime) startTime = time;
+      const elapsedTime = time - startTime;
       
-      // Calculate position based on time
-      const progress = (elapsed % duration) / duration;
-      const totalWidth = slider.scrollWidth - slider.clientWidth;
-      const position = totalWidth * progress;
-      
-      slider.scrollLeft = position;
+      if (containerRef.current) {
+        // Get total width of elements (including duplicates for infinite scroll)
+        const totalWidth = tools.length * 90; // Approximate width per item
+        
+        // Calculate position as a percentage of the total width
+        const newPosition = (elapsedTime % duration) / duration * totalWidth;
+        setPosition(newPosition);
+      }
       
       animationId = requestAnimationFrame(animate);
     };
@@ -67,9 +66,11 @@ export function ToolsSlider({ tools, title, icons = {} }: ToolsSliderProps) {
     animationId = requestAnimationFrame(animate);
     
     return () => {
-      cancelAnimationFrame(animationId);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
     };
-  }, [tools]);
+  }, [tools.length]);
   
   return (
     <motion.div
@@ -83,34 +84,23 @@ export function ToolsSlider({ tools, title, icons = {} }: ToolsSliderProps) {
       <h4 className="text-lg font-medium mb-3">{title}</h4>
       
       <div 
-        className="flex overflow-x-auto scrollbar-hide pb-1 pt-1" 
-        ref={sliderRef}
-        style={{ scrollBehavior: 'smooth' }}
+        className="overflow-hidden relative rounded-lg bg-surface/30 border border-surface p-1"
+        ref={containerRef}
+        style={{ height: '80px' }}
       >
-        <div className="flex space-x-2 pr-4">
-          {tools.map((tool, index) => (
+        <div 
+          className="flex absolute"
+          style={{ 
+            transform: `translateX(-${position}px)`,
+            transition: 'transform 0.1s linear'
+          }}
+        >
+          {/* Render tools twice to create illusion of infinite scroll */}
+          {[...tools, ...tools].map((tool, index) => (
             <ToolIcon key={index} name={tool} icon={icons[tool]} />
-          ))}
-          
-          {/* Duplicate items to create seamless loop effect */}
-          {tools.slice(0, 4).map((tool, index) => (
-            <ToolIcon key={`dup-${index}`} name={tool} icon={icons[tool]} />
           ))}
         </div>
       </div>
     </motion.div>
   );
 }
-
-// Add custom styles for hiding scrollbar
-const style = document.createElement('style');
-style.textContent = `
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-`;
-document.head.appendChild(style);
