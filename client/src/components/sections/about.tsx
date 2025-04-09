@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { slideUp, fadeIn } from "@/lib/animations";
 import { SectionHeading } from "../ui/section-heading";
 import { WaveBackground } from "@/components/ui/wave-background";
-import { ToolsSlider } from "@/components/ui/tools-slider";
+import { ToolsGrid } from "@/components/ui/tools-grid";
 import { tools, operatingSystems } from "@/data/resume";
 
 export function AboutSection() {
@@ -101,8 +101,8 @@ export function AboutSection() {
               </p>
             </motion.div>
             
-            <ToolsSlider tools={tools} title="Security Tools" icons={toolIcons} />
-            <ToolsSlider tools={operatingSystems} title="Operating Systems" icons={osIcons} />
+            <ToolsGrid tools={tools} title="Security Tools" icons={toolIcons} />
+            <ToolsGrid tools={operatingSystems} title="Operating Systems" icons={osIcons} />
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
