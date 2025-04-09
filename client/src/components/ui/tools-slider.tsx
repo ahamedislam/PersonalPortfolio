@@ -1,5 +1,5 @@
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { fadeIn } from "@/lib/animations";
 
 interface ToolIconProps {
@@ -17,17 +17,17 @@ function ToolIcon({ name, icon }: ToolIconProps) {
     .toUpperCase();
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 shadow-lg relative overflow-hidden group">
+    <div className="flex flex-col items-center gap-2 py-2 px-1">
+      <div className="w-12 h-12 bg-background/50 rounded-lg flex items-center justify-center border border-primary/20 shadow-md relative overflow-hidden group transition-all duration-300 hover:bg-background">
         {icon ? (
-          <i className={`${icon} text-primary text-2xl`}></i>
+          <i className={`${icon} text-primary text-xl transition-all duration-300 group-hover:scale-110`}></i>
         ) : (
-          <span className="text-primary text-xl font-bold">{acronym}</span>
+          <span className="text-primary text-sm font-bold transition-all duration-300 group-hover:scale-110">{acronym}</span>
         )}
         {/* Animated highlight effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
       </div>
-      <span className="text-gray-300 text-sm">{name}</span>
+      <span className="text-xs text-gray-400 text-center">{name}</span>
     </div>
   );
 }
@@ -39,6 +39,38 @@ interface ToolsSliderProps {
 }
 
 export function ToolsSlider({ tools, title, icons = {} }: ToolsSliderProps) {
+  const sliderRef = useRef<HTMLDivElement>(null);
+  
+  // Auto scroll animation
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+    
+    let animationId: number;
+    let startTime: number;
+    const duration = 20000; // ms for a complete cycle
+    
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      
+      // Calculate position based on time
+      const progress = (elapsed % duration) / duration;
+      const totalWidth = slider.scrollWidth - slider.clientWidth;
+      const position = totalWidth * progress;
+      
+      slider.scrollLeft = position;
+      
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animationId = requestAnimationFrame(animate);
+    
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [tools]);
+  
   return (
     <motion.div
       variants={fadeIn}
@@ -46,29 +78,39 @@ export function ToolsSlider({ tools, title, icons = {} }: ToolsSliderProps) {
       whileInView="visible"
       viewport={{ once: true }}
       custom={0.3}
-      className="mb-10"
+      className="mb-4"
     >
-      <h4 className="text-lg font-medium text-primary mb-5">{title}</h4>
+      <h4 className="text-lg font-medium mb-3">{title}</h4>
       
-      <div className="relative px-12">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent>
-            {tools.map((tool, index) => (
-              <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/5">
-                <ToolIcon name={tool} icon={icons[tool]} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="left-0 bg-surface/80 backdrop-blur-sm hover:bg-surface border-gray-700 text-gray-300" />
-          <CarouselNext className="right-0 bg-surface/80 backdrop-blur-sm hover:bg-surface border-gray-700 text-gray-300" />
-        </Carousel>
+      <div 
+        className="flex overflow-x-auto scrollbar-hide pb-1 pt-1" 
+        ref={sliderRef}
+        style={{ scrollBehavior: 'smooth' }}
+      >
+        <div className="flex space-x-2 pr-4">
+          {tools.map((tool, index) => (
+            <ToolIcon key={index} name={tool} icon={icons[tool]} />
+          ))}
+          
+          {/* Duplicate items to create seamless loop effect */}
+          {tools.slice(0, 4).map((tool, index) => (
+            <ToolIcon key={`dup-${index}`} name={tool} icon={icons[tool]} />
+          ))}
+        </div>
       </div>
     </motion.div>
   );
 }
+
+// Add custom styles for hiding scrollbar
+const style = document.createElement('style');
+style.textContent = `
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+`;
+document.head.appendChild(style);

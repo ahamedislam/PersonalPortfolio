@@ -1,16 +1,37 @@
 import { motion } from "framer-motion";
 import { SkillBar } from "@/components/ui/skill-bar";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ToolsSlider } from "@/components/ui/tools-slider";
 import { slideUp } from "@/lib/animations";
 import { securitySkills, programmingSkills, tools, operatingSystems } from "@/data/resume";
 
 export function SkillsSection() {
+  // Icons for tools
+  const toolIcons: Record<string, string> = {
+    "Metasploit": "fa-solid fa-bug",
+    "Nmap": "fa-solid fa-radar",
+    "BurpSuite": "fa-solid fa-spider",
+    "Rustscan": "fa-solid fa-bolt",
+    "SQLmap": "fa-solid fa-database",
+    "Nuclei": "fa-solid fa-atom",
+    "Gobuster": "fa-solid fa-folder-open",
+    "WireShark": "fa-solid fa-network-wired",
+  };
+
+  // Icons for operating systems
+  const osIcons: Record<string, string> = {
+    "Kali Linux": "fa-brands fa-linux",
+    "Ubuntu": "fa-brands fa-ubuntu",
+    "Parrot OS": "fa-brands fa-linux",
+    "Windows": "fa-brands fa-windows",
+  };
+
   return (
     <section id="skills" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <SectionHeading title="Technical" highlight="Skills" />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Security Expertise */}
           <motion.div 
             className="bg-surface border border-gray-700 rounded-xl p-6 shadow-lg"
@@ -77,27 +98,9 @@ export function SkillsSection() {
             </div>
             <h3 className="text-xl font-bold mb-4">Tools & Technologies</h3>
             
-            <div className="grid grid-cols-2 gap-3 mb-4">
-              {tools.map((tool, index) => (
-                <div 
-                  key={index}
-                  className="bg-background rounded-lg p-3 text-center hover:bg-background/70 transition-colors"
-                >
-                  <span className="text-sm">{tool}</span>
-                </div>
-              ))}
-            </div>
-            
-            <h4 className="text-lg font-bold mb-3">Operating Systems</h4>
-            <div className="grid grid-cols-2 gap-3">
-              {operatingSystems.map((os, index) => (
-                <div 
-                  key={index}
-                  className="bg-background rounded-lg p-3 text-center hover:bg-background/70 transition-colors"
-                >
-                  <span className="text-sm">{os}</span>
-                </div>
-              ))}
+            <div className="space-y-5">
+              <ToolsSlider tools={tools} title="Security Tools" icons={toolIcons} />
+              <ToolsSlider tools={operatingSystems} title="Operating Systems" icons={osIcons} />
             </div>
           </motion.div>
         </div>
