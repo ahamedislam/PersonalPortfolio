@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { slideUp, fadeIn } from "@/lib/animations";
 import { SectionHeading } from "../ui/section-heading";
 import { WaveBackground } from "@/components/ui/wave-background";
+import { ToolsSlider } from "@/components/ui/tools-slider";
+import { tools, operatingSystems } from "@/data/resume";
 
 export function AboutSection() {
   const languages = [
@@ -24,6 +26,26 @@ export function AboutSection() {
     { name: "Twitter", icon: "fa-brands fa-twitter" },
     { name: "HackerOne", icon: "fa-solid fa-bug" }
   ];
+
+  // Icons for tools
+  const toolIcons: Record<string, string> = {
+    "Metasploit": "fa-solid fa-bug",
+    "Nmap": "fa-solid fa-radar",
+    "BurpSuite": "fa-solid fa-spider",
+    "Rustscan": "fa-solid fa-bolt",
+    "SQLmap": "fa-solid fa-database",
+    "Nuclei": "fa-solid fa-atom",
+    "Gobuster": "fa-solid fa-folder-open",
+    "WireShark": "fa-solid fa-network-wired",
+  };
+
+  // Icons for operating systems
+  const osIcons: Record<string, string> = {
+    "Kali Linux": "fa-brands fa-linux",
+    "Ubuntu": "fa-brands fa-ubuntu",
+    "Parrot OS": "fa-brands fa-linux",
+    "Windows": "fa-brands fa-windows",
+  };
 
   return (
     <section id="about" className="py-24 bg-surface relative overflow-hidden">
@@ -60,6 +82,27 @@ export function AboutSection() {
                 HackerOne, finding vulnerabilities in companies like Meta, Yahoo, Mozilla, and more.
               </p>
             </motion.div>
+          </div>
+          
+          {/* Tools & Technologies Section */}
+          <div className="bg-card/40 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-xl mb-12">
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={0.3}
+              className="text-center mb-8"
+            >
+              <h3 className="text-2xl font-semibold mb-4">Tools & Technologies</h3>
+              <p className="text-gray-300 max-w-3xl mx-auto">
+                These are the tools and technologies I use regularly in my cybersecurity work, 
+                including penetration testing, vulnerability assessment, and security research.
+              </p>
+            </motion.div>
+            
+            <ToolsSlider tools={tools} title="Security Tools" icons={toolIcons} />
+            <ToolsSlider tools={operatingSystems} title="Operating Systems" icons={osIcons} />
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
