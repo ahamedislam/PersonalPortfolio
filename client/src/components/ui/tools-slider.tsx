@@ -27,7 +27,7 @@ function ToolIcon({ name, icon }: ToolIconProps) {
         {/* Animated highlight effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
       </div>
-      <span className="text-xs text-gray-400 text-center">{name}</span>
+      <span className="text-xs text-gray-300 text-center font-medium">{name}</span>
     </div>
   );
 }
@@ -44,7 +44,7 @@ export function ToolsSlider({ tools, title, icons = {} }: ToolsSliderProps) {
   
   useEffect(() => {
     let animationId: number;
-    const duration = 8000; // Time in ms for a complete cycle
+    const duration = 15000; // Time in ms for a complete cycle (slowed down)
     let startTime: number | null = null;
     
     const animate = (time: number) => {
@@ -86,7 +86,7 @@ export function ToolsSlider({ tools, title, icons = {} }: ToolsSliderProps) {
       <div 
         className="overflow-hidden relative rounded-lg bg-surface/30 border border-surface p-1"
         ref={containerRef}
-        style={{ height: '80px' }}
+        style={{ height: '100px' }}
       >
         <div 
           className="flex absolute"
