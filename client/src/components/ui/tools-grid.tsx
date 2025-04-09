@@ -16,12 +16,12 @@ function ToolIcon({ name, icon }: ToolIconProps) {
     .toUpperCase();
 
   return (
-    <div className="flex flex-col items-center gap-3 group">
-      <div className="w-20 h-20 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:shadow-primary/20 group-hover:border-primary/40">
+    <div className="flex items-center gap-3 group border border-primary/10 rounded-md p-2 bg-primary/5 hover:bg-primary/10 transition-colors">
+      <div className="w-9 h-9 bg-primary/10 rounded-md flex items-center justify-center flex-shrink-0 shadow-sm relative overflow-hidden">
         {icon ? (
-          <i className={`${icon} text-primary text-3xl transition-all duration-300 group-hover:scale-110`}></i>
+          <i className={`${icon} text-primary text-sm transition-all duration-300 group-hover:scale-110`}></i>
         ) : (
-          <span className="text-primary text-2xl font-bold transition-all duration-300 group-hover:scale-110">{acronym}</span>
+          <span className="text-primary text-xs font-bold transition-all duration-300 group-hover:scale-110">{acronym}</span>
         )}
         {/* Animated highlight effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
@@ -45,11 +45,11 @@ export function ToolsGrid({ tools, title, icons = {} }: ToolsGridProps) {
       whileInView="visible"
       viewport={{ once: true }}
       custom={0.3}
-      className="mb-10"
+      className="mb-6"
     >
-      <h4 className="text-lg font-medium text-primary mb-5">{title}</h4>
+      <h4 className="text-lg font-medium text-primary mb-3">{title}</h4>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {tools.map((tool, index) => (
           <ToolIcon key={index} name={tool} icon={icons[tool]} />
         ))}

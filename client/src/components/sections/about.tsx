@@ -85,24 +85,25 @@ export function AboutSection() {
           </div>
           
           {/* Tools & Technologies Section */}
-          <div className="bg-card/40 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-xl mb-12">
+          <div className="bg-card/40 backdrop-blur-sm border border-border rounded-2xl p-6 shadow-xl mb-12">
             <motion.div
               variants={fadeIn}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               custom={0.3}
-              className="text-center mb-8"
+              className="mb-5"
             >
-              <h3 className="text-2xl font-semibold mb-4">Tools & Technologies</h3>
-              <p className="text-gray-300 max-w-3xl mx-auto">
-                These are the tools and technologies I use regularly in my cybersecurity work, 
-                including penetration testing, vulnerability assessment, and security research.
+              <h3 className="text-xl font-semibold mb-2">Tools & Technologies</h3>
+              <p className="text-gray-400 text-sm">
+                Tools and technologies I use regularly in my cybersecurity work
               </p>
             </motion.div>
             
-            <ToolsGrid tools={tools} title="Security Tools" icons={toolIcons} />
-            <ToolsGrid tools={operatingSystems} title="Operating Systems" icons={osIcons} />
+            <div className="space-y-4">
+              <ToolsGrid tools={tools} title="Security Tools" icons={toolIcons} />
+              <ToolsGrid tools={operatingSystems} title="Operating Systems" icons={osIcons} />
+            </div>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
